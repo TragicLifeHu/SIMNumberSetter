@@ -3,38 +3,33 @@ package com.kieronquinn.app.simnumbersetter
 import android.content.Intent
 import com.kieronquinn.app.simnumbersetter.service.PhoneNumberSetterService
 import com.kieronquinn.app.simnumbersetter.utils.extensions.checkSecurity
-import de.robv.android.xposed.IXposedHookLoadPackage
-import de.robv.android.xposed.XC_MethodHook
-import de.robv.android.xposed.XposedHelpers
-import de.robv.android.xposed.callbacks.XC_LoadPackage
+import io.github.libxposed.api.XposedModule
+import io.github.libxposed.api.XposedModuleInterface.PackageReadyParam
 
 /**
  *  Xposed hook to allow binding to TelephonyDebugService (an exported, but protected service in
  *  com.android.phone), returning [IPhoneNumberSetter]. This can then be accessed via the UI
  *  and used to query and set the number.
  */
-class Xposed: IXposedHookLoadPackage {
+class Xposed : XposedModule() {
 
-    override fun handleLoadPackage(lpparam: XC_LoadPackage.LoadPackageParam) {
-        if(lpparam.packageName != "com.android.phone") return
-        XposedHelpers.findAndHookMethod(
-            "com.android.phone.TelephonyDebugService",
-            lpparam.classLoader,
-            "onBind",
-            Intent::class.java,
-            object: XC_MethodHook() {
-                override fun beforeHookedMethod(param: MethodHookParam) {
-                    super.beforeHookedMethod(param)
-                    param.onBind(param.args[0] as Intent)
-                }
+    override fun onPackageReady(param: PackageReadyParam) {
+        if (param.packageName != PHONE_PACKAGE) return
+
+        val serviceClass = Class.forName(TELEPHONY_DEBUG_SERVICE, false, param.classLoader)
+        val onBind = serviceClass.getDeclaredMethod("onBind", Intent::class.java)
+        hook(onBind).intercept { chain ->
+            val intent = chain.getArg(0) as Intent
+            if (intent.checkSecurity()) {
+                PhoneNumberSetterService()
+            } else {
+                chain.proceed()
             }
-        )
-    }
-
-    private fun XC_MethodHook.MethodHookParam.onBind(intent: Intent) {
-        if(intent.checkSecurity()){
-            result = PhoneNumberSetterService()
         }
     }
 
+    private companion object {
+        const val PHONE_PACKAGE = "com.android.phone"
+        const val TELEPHONY_DEBUG_SERVICE = "com.android.phone.TelephonyDebugService"
+    }
 }
