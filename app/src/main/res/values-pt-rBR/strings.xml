@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="main_error_title">Erro</string>
+    <string name="main_error_close">Fechar</string>
+    <string name="main_loaded_card_info_title">Sobre</string>
+    <string name="main_loaded_card_info_content">O SIM Number Setter grava um número de telefone informado na memória de "número do assinante" do cartão SIM. Esse é o número que o Android lê e usa em alguns locais do sistema, incluindo Configurações e Mensagens. Ele também é fornecido a alguns aplicativos de terceiros caso tenham permissões suficientes.\n\n<b>A alteração do número do SIM é semipermanente: ela permanece após reinicializações, a desinstalação deste aplicativo e até mesmo a transferência do SIM para outro dispositivo, mas pode ser alterada novamente a qualquer momento usando este aplicativo.</b>\n\nO SIM Number Setter NÃO:\n- Altera seu número de telefone real, independentemente do que você inserir.\n- Desbloqueia um SIM bloqueado pela operadora.\n- Fornece dados móveis ou chamadas grátis.\n- Altera seu IMEI.\n\n<b>O SIM Number Setter usa os métodos integrados do Android para gravar dados no SIM. Nem o aplicativo nem o desenvolvedor se responsabilizam por problemas durante o processo, incluindo danos ao SIM ou problemas de rede.</b></string>
+    <string name="main_loaded_card_edit_title">Editar</string>
+    <string name="main_loaded_card_edit_sim">SIM</string>
+    <string name="main_loaded_card_edit_sim_value">SIM %1$d — %2$s</string>
+    <string name="main_loaded_card_edit_sim_clarification">Altera o número armazenado no SIM selecionado. Isso não altera o SIM padrão para chamadas, mensagens ou dados móveis.</string>
+    <string name="main_loaded_card_edit_number_empty">Desconhecido</string>
+    <string name="main_loaded_card_edit_input_hint">Digite o número</string>
+    <string name="main_loaded_card_edit_input_save">Salvar</string>
+    <string name="main_loaded_card_edit_refresh">Atualizar todos os SIMs</string>
+
+    <string name="loading_loading">Carregando…</string>
+    <string name="loading_refreshing">Atualizando…</string>
+    <string name="loading_saving">Salvando…</string>
+
+    <string name="error_no_shizuku">O Shizuku não está disponível. Instale e inicie o Shizuku e reinicie este aplicativo.</string>
+    <string name="error_no_shizuku_permission">A permissão do Shizuku foi negada. Permita o acesso deste aplicativo e tente novamente.</string>
+    <string name="error_no_permission">Não foi possível conceder a permissão necessária usando o Shizuku. Reinicie o aplicativo e tente novamente.</string>
+    <string name="error_xposed_reboot_required">O SIM Number Setter foi instalado ou atualizado depois que o dispositivo foi iniciado. Reinicie o telefone para que o LSPosed possa carregar esta versão do módulo.</string>
+    <string name="error_no_xposed_service">Não foi possível conectar ao serviço de telefonia. Verifique se o módulo do LSPosed está ativado, se o escopo inclui os Serviços de telefone e se o dispositivo foi reiniciado.</string>
+    <string name="error_xposed_call_failed">A conexão com o serviço de telefonia foi estabelecida, mas ele não forneceu a interface Xposed esperada. Exporte o registro de depuração para obter detalhes.</string>
+    <string name="error_no_active_sim">Nenhum SIM ativo foi encontrado. Insira ou ative um SIM e tente novamente.</string>
+    <string name="save_failed_title">O número não foi alterado</string>
+    <string name="save_failed_message">O SIM não manteve o novo número. As possíveis causas incluem a recusa da gravação pelo SIM (por exemplo, ADM ou outra proteção de segurança), a falta de suporte do dispositivo ou da operadora a esta operação ou a atualização do aplicativo ou módulo Xposed sem reinicialização. Reinicie o dispositivo e tente novamente. Você pode dispensar esta mensagem para continuar usando o aplicativo.</string>
+    <string name="menu_github">GitHub</string>
+    <string name="menu_donate">Doar</string>
+    <string name="menu_export_debug_log">Exportar registro de depuração</string>
+    <string name="debug_log_saved">Registro de depuração salvo</string>
+    <string name="debug_log_save_failed">Falha ao salvar o registro de depuração</string>
+</resources>

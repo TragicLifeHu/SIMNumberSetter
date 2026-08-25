@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="main_error_title">錯誤</string>
+    <string name="main_error_close">關閉</string>
+    <string name="main_loaded_card_info_title">關於</string>
+    <string name="main_loaded_card_info_content">SIM Number Setter 會將指定的電話門號寫入 SIM 卡的「訂戶號碼」記憶體。Android 會存取此號碼，並在系統中的多個位置使用，包括「設定」和「訊息」。如果第三方應用程式具有足夠的權限，也能取得此號碼。\n\n<b>變更 SIM 號碼具有半永久性：重新啟動、解除安裝本應用程式，甚至將 SIM 卡換到其他裝置後，此變更仍會保留，但您隨時可以透過本應用程式再次變更。</b>\n\nSIM Number Setter 不會：\n- 變更您的實際電話號碼，無論您輸入什麼內容。\n- 解除電信業者對 SIM 卡的封鎖。\n- 提供免費數據流量或通話。\n- 變更您的 IMEI。\n\n<b>SIM Number Setter 使用 Android 內建方法將資料寫入 SIM 卡。本應用程式及開發人員不對此過程所造成的任何問題負責，包括 SIM 卡損壞或網路問題。</b></string>
+    <string name="main_loaded_card_edit_title">編輯</string>
+    <string name="main_loaded_card_edit_sim">SIM 卡</string>
+    <string name="main_loaded_card_edit_sim_value">SIM 卡 %1$d — %2$s</string>
+    <string name="main_loaded_card_edit_sim_clarification">變更所選 SIM 卡中儲存的號碼。這不會變更通話、訊息或行動數據的預設 SIM 卡。</string>
+    <string name="main_loaded_card_edit_number_empty">未知</string>
+    <string name="main_loaded_card_edit_input_hint">輸入號碼</string>
+    <string name="main_loaded_card_edit_input_save">儲存</string>
+    <string name="main_loaded_card_edit_refresh">重新整理所有 SIM 卡</string>
+
+    <string name="loading_loading">正在載入…</string>
+    <string name="loading_refreshing">正在重新整理…</string>
+    <string name="loading_saving">正在儲存…</string>
+
+    <string name="error_no_shizuku">Shizuku 無法使用。請安裝並啟動 Shizuku，然後重新啟動本應用程式。</string>
+    <string name="error_no_shizuku_permission">Shizuku 權限遭拒。請允許本應用程式存取，然後再試一次。</string>
+    <string name="error_no_permission">無法使用 Shizuku 授予所需權限。請重新啟動本應用程式，然後再試一次。</string>
+    <string name="error_xposed_reboot_required">SIM Number Setter 是在裝置上次啟動後安裝或更新的。請重新啟動手機，讓 LSPosed 載入此版本的模組。</string>
+    <string name="error_no_xposed_service">無法連線至電話服務。請確認 LSPosed 模組已啟用、作用域包含「電話服務」，且裝置已重新啟動。</string>
+    <string name="error_xposed_call_failed">已連線至電話服務，但服務未提供預期的 Xposed 介面。請匯出偵錯記錄以取得詳細資訊。</string>
+    <string name="error_no_active_sim">找不到使用中的 SIM 卡。請插入或啟用 SIM 卡，然後再試一次。</string>
+    <string name="save_failed_title">號碼未變更</string>
+    <string name="save_failed_message">SIM 卡未保留新號碼。可能的原因包括 SIM 卡拒絕寫入（例如受到 ADM 或其他安全機制保護）、裝置或電信業者不支援此操作，或應用程式或 Xposed 模組更新後尚未重新啟動。請重新啟動裝置，然後再試一次。您可以關閉此訊息並繼續使用本應用程式。</string>
+    <string name="menu_github">GitHub</string>
+    <string name="menu_donate">贊助</string>
+    <string name="menu_export_debug_log">匯出偵錯記錄</string>
+    <string name="debug_log_saved">偵錯記錄已儲存</string>
+    <string name="debug_log_save_failed">無法儲存偵錯記錄</string>
+</resources>

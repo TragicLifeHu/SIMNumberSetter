@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="main_error_title">Fehler</string>
+    <string name="main_error_close">Schließen</string>
+    <string name="main_loaded_card_info_title">Über die App</string>
+    <string name="main_loaded_card_info_content">SIM Number Setter schreibt eine angegebene Telefonnummer in den Speicher für die „Teilnehmernummer“ der SIM-Karte. Diese Nummer wird von Android ausgelesen und an verschiedenen Stellen im System verwendet, unter anderem in den Einstellungen und in der Nachrichten-App. Sie wird außerdem einigen Drittanbieter-Apps zur Verfügung gestellt, sofern diese über ausreichende Berechtigungen verfügen.\n\n<b>Die Änderung der SIM-Nummer ist dauerhaft, bis sie erneut geändert wird: Sie bleibt nach Neustarts, der Deinstallation dieser App und sogar beim Einsetzen der SIM-Karte in ein anderes Gerät erhalten. Sie kann jedoch jederzeit mit dieser App erneut geändert werden.</b>\n\nSIM Number Setter kann Folgendes NICHT:\n- Deine tatsächliche Telefonnummer ändern, unabhängig von deiner Eingabe.\n- Eine vom Mobilfunknetz gesperrte SIM-Karte entsperren.\n- Kostenlose mobile Daten oder Anrufe bereitstellen.\n- Deine IMEI ändern.\n\n<b>SIM Number Setter verwendet die integrierten Android-Methoden, um Daten auf die SIM-Karte zu schreiben. Weder die App noch der Entwickler haften für Probleme bei diesem Vorgang, einschließlich Schäden an der SIM-Karte oder Netzwerkproblemen.</b></string>
+    <string name="main_loaded_card_edit_title">Bearbeiten</string>
+    <string name="main_loaded_card_edit_sim">SIM</string>
+    <string name="main_loaded_card_edit_sim_value">SIM %1$d — %2$s</string>
+    <string name="main_loaded_card_edit_sim_clarification">Ändert die auf der ausgewählten SIM-Karte gespeicherte Nummer. Dadurch wird die Standard-SIM für Anrufe, Nachrichten oder mobile Daten nicht geändert.</string>
+    <string name="main_loaded_card_edit_number_empty">Unbekannt</string>
+    <string name="main_loaded_card_edit_input_hint">Nummer eingeben</string>
+    <string name="main_loaded_card_edit_input_save">Speichern</string>
+    <string name="main_loaded_card_edit_refresh">Alle SIM-Karten aktualisieren</string>
+
+    <string name="loading_loading">Wird geladen…</string>
+    <string name="loading_refreshing">Wird aktualisiert…</string>
+    <string name="loading_saving">Wird gespeichert…</string>
+
+    <string name="error_no_shizuku">Shizuku ist nicht verfügbar. Installiere und starte Shizuku und starte anschließend diese App neu.</string>
+    <string name="error_no_shizuku_permission">Die Shizuku-Berechtigung wurde verweigert. Erlaube den Zugriff für diese App und versuche es erneut.</string>
+    <string name="error_no_permission">Die erforderliche Berechtigung konnte mit Shizuku nicht erteilt werden. Starte die App neu und versuche es erneut.</string>
+    <string name="error_xposed_reboot_required">SIM Number Setter wurde seit dem letzten Gerätestart installiert oder aktualisiert. Starte dein Smartphone neu, damit LSPosed diese Version des Moduls laden kann.</string>
+    <string name="error_no_xposed_service">Die Verbindung zum Telefoniedienst konnte nicht hergestellt werden. Vergewissere dich, dass das LSPosed-Modul aktiviert ist, sein Geltungsbereich die Telefondienste umfasst und das Gerät neu gestartet wurde.</string>
+    <string name="error_xposed_call_failed">Die Verbindung zum Telefoniedienst wurde hergestellt, aber die erwartete Xposed-Schnittstelle wurde nicht bereitgestellt. Exportiere das Debugprotokoll, um weitere Informationen zu erhalten.</string>
+    <string name="error_no_active_sim">Es wurde keine aktive SIM-Karte gefunden. Lege eine SIM-Karte ein oder aktiviere sie und versuche es erneut.</string>
+    <string name="save_failed_title">Die Nummer wurde nicht geändert</string>
+    <string name="save_failed_message">Die SIM-Karte hat die neue Nummer nicht gespeichert. Mögliche Ursachen sind, dass die SIM-Karte den Schreibvorgang ablehnt (zum Beispiel aufgrund von ADM oder eines anderen Sicherheitsschutzes), dass das Gerät oder der Mobilfunkanbieter diesen Vorgang nicht unterstützt oder dass die App beziehungsweise das Xposed-Modul aktualisiert wurde, ohne das Gerät neu zu starten. Starte das Gerät neu und versuche es erneut. Du kannst diese Meldung schließen, um die App weiter zu verwenden.</string>
+    <string name="menu_github">GitHub</string>
+    <string name="menu_donate">Spenden</string>
+    <string name="menu_export_debug_log">Debugprotokoll exportieren</string>
+    <string name="debug_log_saved">Debugprotokoll gespeichert</string>
+    <string name="debug_log_save_failed">Debugprotokoll konnte nicht gespeichert werden</string>
+</resources>

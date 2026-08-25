@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="main_error_title">Error</string>
+    <string name="main_error_close">Cerrar</string>
+    <string name="main_loaded_card_info_title">Acerca de</string>
+    <string name="main_loaded_card_info_content">SIM Number Setter escribe un número de teléfono determinado en la memoria del "número de abonado" de la tarjeta SIM. Este es el número que Android lee y utiliza en varios lugares del sistema, incluidos Ajustes y Mensajes. También se proporciona a algunas aplicaciones de terceros si tienen permisos suficientes.\n\n<b>El cambio del número de la SIM es semipermanente: se conservará después de reiniciar, desinstalar esta aplicación e incluso trasladar la SIM a otro dispositivo, pero se puede volver a cambiar en cualquier momento con esta aplicación.</b>\n\nSIM Number Setter NO:\n- Cambia tu número de teléfono real, independientemente de lo que introduzcas.\n- Desbloquea una SIM bloqueada por la red.\n- Proporciona datos ni llamadas gratis.\n- Cambia tu IMEI.\n\n<b>SIM Number Setter utiliza los métodos integrados de Android para escribir datos en la SIM. Ni la aplicación ni el desarrollador se hacen responsables de los problemas derivados del proceso, incluidos los daños en la SIM o los problemas de red.</b></string>
+    <string name="main_loaded_card_edit_title">Editar</string>
+    <string name="main_loaded_card_edit_sim">SIM</string>
+    <string name="main_loaded_card_edit_sim_value">SIM %1$d — %2$s</string>
+    <string name="main_loaded_card_edit_sim_clarification">Cambia el número almacenado en la SIM seleccionada. Esto no cambia la SIM predeterminada para llamadas, mensajes ni datos móviles.</string>
+    <string name="main_loaded_card_edit_number_empty">Desconocido</string>
+    <string name="main_loaded_card_edit_input_hint">Introduce el número</string>
+    <string name="main_loaded_card_edit_input_save">Guardar</string>
+    <string name="main_loaded_card_edit_refresh">Actualizar todas las SIM</string>
+
+    <string name="loading_loading">Cargando…</string>
+    <string name="loading_refreshing">Actualizando…</string>
+    <string name="loading_saving">Guardando…</string>
+
+    <string name="error_no_shizuku">Shizuku no está disponible. Instala e inicia Shizuku y, a continuación, reinicia esta aplicación.</string>
+    <string name="error_no_shizuku_permission">Se ha denegado el permiso de Shizuku. Permite el acceso a esta aplicación e inténtalo de nuevo.</string>
+    <string name="error_no_permission">No se ha podido conceder el permiso necesario mediante Shizuku. Reinicia la aplicación e inténtalo de nuevo.</string>
+    <string name="error_xposed_reboot_required">SIM Number Setter se ha instalado o actualizado después del último inicio del dispositivo. Reinicia el teléfono para que LSPosed pueda cargar esta versión del módulo.</string>
+    <string name="error_no_xposed_service">No se ha podido conectar con el servicio de telefonía. Comprueba que el módulo de LSPosed esté activado, que su ámbito incluya Servicios telefónicos y que el dispositivo se haya reiniciado.</string>
+    <string name="error_xposed_call_failed">Se ha establecido la conexión con el servicio de telefonía, pero no ha proporcionado la interfaz Xposed esperada. Exporta el registro de depuración para obtener más información.</string>
+    <string name="error_no_active_sim">No se ha encontrado ninguna SIM activa. Inserta o activa una SIM e inténtalo de nuevo.</string>
+    <string name="save_failed_title">No se ha cambiado el número</string>
+    <string name="save_failed_message">La SIM no ha conservado el nuevo número. Entre las posibles causas se incluyen que la SIM rechace la escritura (por ejemplo, por ADM u otra protección de seguridad), que el dispositivo o el operador no admitan esta operación, o que la aplicación o el módulo Xposed se hayan actualizado sin reiniciar. Reinicia el dispositivo e inténtalo de nuevo. Puedes cerrar este mensaje para seguir utilizando la aplicación.</string>
+    <string name="menu_github">GitHub</string>
+    <string name="menu_donate">Donar</string>
+    <string name="menu_export_debug_log">Exportar registro de depuración</string>
+    <string name="debug_log_saved">Registro de depuración guardado</string>
+    <string name="debug_log_save_failed">No se ha podido guardar el registro de depuración</string>
+</resources>

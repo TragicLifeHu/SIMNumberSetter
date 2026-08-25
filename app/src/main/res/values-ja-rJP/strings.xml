@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="main_error_title">エラー</string>
+    <string name="main_error_close">閉じる</string>
+    <string name="main_loaded_card_info_title">このアプリについて</string>
+    <string name="main_loaded_card_info_content">SIM Number Setter は、指定された電話番号を SIM カードの「電話加入者番号」メモリに書き込みます。これは Android が読み取り、設定やメッセージなど、システム内のいくつかの場所で使用する番号です。十分な権限を持つ一部のサードパーティ製アプリにも提供されます。\n\n<b>SIM 番号の変更は半永続的です。再起動、このアプリのアンインストール、別の端末への SIM の移動を行っても変更は維持されますが、このアプリを使っていつでも再変更できます。</b>\n\nSIM Number Setter は次のことを行いません。\n- 入力内容にかかわらず、実際の電話番号を変更する。\n- ネットワークによってブロックされた SIM のロックを解除する。\n- 無料のデータ通信や通話を提供する。\n- IMEI を変更する。\n\n<b>SIM Number Setter は Android の組み込みメソッドを使用して SIM にデータを書き込みます。SIM の損傷やネットワーク障害を含め、この処理によって生じた問題について、アプリおよび開発者は責任を負いません。</b></string>
+    <string name="main_loaded_card_edit_title">編集</string>
+    <string name="main_loaded_card_edit_sim">SIM</string>
+    <string name="main_loaded_card_edit_sim_value">SIM %1$d — %2$s</string>
+    <string name="main_loaded_card_edit_sim_clarification">選択した SIM に保存されている番号を変更します。通話、メッセージ、モバイルデータに使用するデフォルトの SIM は変更されません。</string>
+    <string name="main_loaded_card_edit_number_empty">不明</string>
+    <string name="main_loaded_card_edit_input_hint">番号を入力</string>
+    <string name="main_loaded_card_edit_input_save">保存</string>
+    <string name="main_loaded_card_edit_refresh">すべての SIM を更新</string>
+
+    <string name="loading_loading">読み込み中…</string>
+    <string name="loading_refreshing">更新中…</string>
+    <string name="loading_saving">保存中…</string>
+
+    <string name="error_no_shizuku">Shizuku を利用できません。Shizuku をインストールして起動した後、このアプリを再起動してください。</string>
+    <string name="error_no_shizuku_permission">Shizuku の権限が拒否されました。このアプリへのアクセスを許可して、もう一度お試しください。</string>
+    <string name="error_no_permission">Shizuku を使用して必要な権限を付与できませんでした。アプリを再起動して、もう一度お試しください。</string>
+    <string name="error_xposed_reboot_required">端末の前回の起動後に SIM Number Setter がインストールまたは更新されました。LSPosed がこのバージョンのモジュールを読み込めるよう、端末を再起動してください。</string>
+    <string name="error_no_xposed_service">テレフォニーサービスに接続できませんでした。LSPosed モジュールが有効で、スコープに電話サービスが含まれ、端末が再起動されていることを確認してください。</string>
+    <string name="error_xposed_call_failed">テレフォニーサービスに接続しましたが、想定される Xposed インターフェースが提供されませんでした。詳細についてはデバッグログをエクスポートしてください。</string>
+    <string name="error_no_active_sim">有効な SIM が見つかりません。SIM を挿入または有効化して、もう一度お試しください。</string>
+    <string name="save_failed_title">番号は変更されませんでした</string>
+    <string name="save_failed_message">SIM に新しい番号が保持されませんでした。SIM が書き込みを拒否している（ADM などのセキュリティ保護）、端末または通信事業者がこの操作に対応していない、アプリまたは Xposed モジュールの更新後に再起動していない、などの原因が考えられます。端末を再起動して、もう一度お試しください。このメッセージを閉じてアプリを引き続き使用することもできます。</string>
+    <string name="menu_github">GitHub</string>
+    <string name="menu_donate">寄付</string>
+    <string name="menu_export_debug_log">デバッグログをエクスポート</string>
+    <string name="debug_log_saved">デバッグログを保存しました</string>
+    <string name="debug_log_save_failed">デバッグログを保存できませんでした</string>
+</resources>
