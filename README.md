@@ -8,9 +8,16 @@ with sufficient permissions.
 The number is not always set by carriers (leaving "Unknown"), or can be lost or invalid after 
 porting a number to a different SIM. 
 
-This small app allows you to fix it, permanently, using a rooted device with Xposed and Shizuku.
-Shizuku provides the app with the privileged access needed to grant its Android system permission;
-Xposed is still required for the telephony service hook that writes the number.
+This small app allows you to fix it, permanently, using a rooted device with Xposed. The app also
+needs the Android `DUMP` permission. Shizuku can grant that permission during initial setup, or you
+can grant it from a connected computer with:
+
+```
+adb shell pm grant com.kieronquinn.app.simnumbersetter android.permission.DUMP
+```
+
+Shizuku is no longer needed after the permission has been granted. Xposed is still required for
+the telephony service hook that writes the number.
 
 **If you don't have a rooted device, or don't want to root your main device, you may wish to 
 consider rooting an old device, and temporarily putting your SIM into that device, using this app,
