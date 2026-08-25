@@ -159,11 +159,7 @@ class MainViewModelImpl(
     private fun load(loadType: LoadType = LoadType.LOADING) = viewModelScope.launch {
         debugLogRepository.log("Main", "Starting load")
         state.emit(State.Loading(loadType))
-        if (appUpdateRepository.isRebootRequired()) {
-            debugLogRepository.log("Main", "Load stopped: app was installed or updated since boot")
-            state.emit(State.Error(ErrorType.XPOSED_REBOOT_REQUIRED))
-            return@launch
-        }
+        val appUpdatedSinceBoot = appUpdateRepository.isRebootRequired()
         if (!ensureDumpPermission()) {
             debugLogRepository.log("Main", "Load stopped: DUMP permission unavailable")
             state.emit(State.Error(ErrorType.NO_PERMISSION))
@@ -181,12 +177,20 @@ class MainViewModelImpl(
         }) {
             ServiceRepository.Result.Unavailable -> {
                 debugLogRepository.log("Main", "Load stopped: Xposed service unavailable")
-                state.emit(State.Error(ErrorType.NO_XPOSED_SERVICE))
+                state.emit(
+                    State.Error(
+                        serviceError(appUpdatedSinceBoot, ErrorType.NO_XPOSED_SERVICE),
+                    ),
+                )
                 return@launch
             }
             is ServiceRepository.Result.CallFailed -> {
                 debugLogRepository.log("Main", "Load stopped: Xposed binder call failed")
-                state.emit(State.Error(ErrorType.XPOSED_CALL_FAILED))
+                state.emit(
+                    State.Error(
+                        serviceError(appUpdatedSinceBoot, ErrorType.XPOSED_CALL_FAILED),
+                    ),
+                )
                 return@launch
             }
             is ServiceRepository.Result.Success -> result.value ?: run {
@@ -203,6 +207,18 @@ class MainViewModelImpl(
         state.emit(
             State.Loaded(sim.number, sim.phoneId, sim.activePhoneIds, sim.phoneNumbers),
         )
+    }
+
+    private fun serviceError(appUpdatedSinceBoot: Boolean, fallback: ErrorType): ErrorType {
+        return if (appUpdatedSinceBoot) {
+            debugLogRepository.log(
+                "Main",
+                "Prioritising reboot message because the app was installed or updated since boot",
+            )
+            ErrorType.XPOSED_REBOOT_REQUIRED
+        } else {
+            fallback
+        }
     }
 
     private suspend fun ensureDumpPermission(): Boolean {
