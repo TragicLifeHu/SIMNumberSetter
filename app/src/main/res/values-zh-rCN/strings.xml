@@ -8,7 +8,6 @@
     <string name="main_loaded_card_edit_sim">SIM 卡</string>
     <string name="main_loaded_card_edit_sim_value">SIM 卡 %1$d — %2$s</string>
     <string name="main_loaded_card_edit_sim_clarification">更改所选 SIM 卡中存储的号码。此操作不会更改通话、短信或移动数据所使用的默认 SIM 卡。</string>
-    <string name="main_loaded_card_edit_content">当前号码: %1s</string>
     <string name="main_loaded_card_edit_number_empty">未知</string>
     <string name="main_loaded_card_edit_input_hint">输入号码</string>
     <string name="main_loaded_card_edit_input_save">保存</string>
@@ -25,9 +24,8 @@
     <string name="error_no_xposed_service">无法连接到电话服务。请确保 LSPosed 模块已启用、作用域包含电话服务，并且设备已重新启动。</string>
     <string name="error_xposed_call_failed">已连接到电话服务，但它未提供预期的 Xposed 接口。请导出调试日志以获取详细信息。</string>
     <string name="error_no_active_sim">未找到已启用的 SIM 卡。请插入或启用 SIM 卡后重试。</string>
-    <string name="error_save_failed">保存号码失败,你的设备可能不支持该功能</string>
-    <string name="error_save_authentication_required">SIM 卡拒绝写入，因为此配置文件受安全保护。Android 可以报告此情况，但不提供输入运营商 ADM 码的 API。请联系 SIM 卡发行方解锁配置文件或提供可写的替换卡。</string>
-    <string name="error_save_timeout">SIM 卡未能及时完成写入。请重新启动设备后重试。</string>
+    <string name="save_failed_title">号码未更改</string>
+    <string name="save_failed_message">SIM 卡未保留新号码。可能的原因包括 SIM 卡拒绝写入（例如 ADM 或其他安全保护）、设备或运营商不支持此操作，或者应用或 Xposed 模块更新后尚未重启。请重启设备后重试。你可以关闭此消息并继续使用应用。</string>
     <string name="menu_github">Github</string>
     <string name="menu_donate">打赏</string>
     <string name="menu_export_debug_log">导出调试日志</string>

@@ -9,7 +9,6 @@
     <string name="main_loaded_card_edit_sim">SIM</string>
     <string name="main_loaded_card_edit_sim_value">SIM %1$d — %2$s</string>
     <string name="main_loaded_card_edit_sim_clarification">Changes the number stored on the selected SIM. This does not change your default SIM for calls, messages, or mobile data.</string>
-    <string name="main_loaded_card_edit_content">Current Number: %1s</string>
     <string name="main_loaded_card_edit_number_empty">Unknown</string>
     <string name="main_loaded_card_edit_input_hint">Enter Number</string>
     <string name="main_loaded_card_edit_input_save">Save</string>
@@ -26,9 +25,8 @@
     <string name="error_no_xposed_service">Could not connect to the telephony service. Make sure the LSPosed module is enabled, its scope includes Phone Services, and the device has been rebooted.</string>
     <string name="error_xposed_call_failed">Connected to the telephony service, but it did not provide the expected Xposed interface. Export the debug log for details.</string>
     <string name="error_no_active_sim">No active SIM was found. Insert or enable a SIM and try again.</string>
-    <string name="error_save_failed">Failed to save number, your device does not support this feature, sorry.</string>
-    <string name="error_save_authentication_required">The SIM rejected the write because this profile is security-protected. Android can report this condition, but does not provide an API for entering an operator ADM code. Ask the SIM issuer to unlock the profile or provide a writable replacement.</string>
-    <string name="error_save_timeout">The SIM did not finish the write in time. Restart the device and try again.</string>
+    <string name="save_failed_title">Number was not changed</string>
+    <string name="save_failed_message">The SIM did not retain the new number. Possible causes include the SIM rejecting the write (for example, ADM or other security protection), the device or carrier not supporting this operation, or the app or Xposed module having been updated without a reboot. Restart the device and try again. You can dismiss this message to continue using the app.</string>
     <string name="menu_github">GitHub</string>
     <string name="menu_donate">Donate</string>
     <string name="menu_export_debug_log">Export debug log</string>

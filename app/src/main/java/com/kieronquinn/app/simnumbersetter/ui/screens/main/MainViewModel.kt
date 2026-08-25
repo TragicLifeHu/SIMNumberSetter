@@ -23,6 +23,7 @@ abstract class MainViewModel : ViewModel() {
 
     abstract val state: StateFlow<State>
     abstract val number: StateFlow<String?>
+    abstract val messages: SharedFlow<Message>
     abstract fun onNumberChanged(newNumber: String)
     abstract fun onPhoneSelected(phoneId: Int)
     abstract fun onRefreshClicked()
@@ -51,9 +52,13 @@ abstract class MainViewModel : ViewModel() {
         NO_XPOSED_SERVICE(R.string.error_no_xposed_service),
         XPOSED_CALL_FAILED(R.string.error_xposed_call_failed),
         NO_ACTIVE_SIM(R.string.error_no_active_sim),
-        SAVE_FAILED(R.string.error_save_failed),
-        SAVE_AUTHENTICATION_REQUIRED(R.string.error_save_authentication_required),
-        SAVE_TIMEOUT(R.string.error_save_timeout),
+    }
+
+    enum class Message(
+        @param:StringRes val titleRes: Int,
+        @param:StringRes val contentRes: Int,
+    ) {
+        SAVE_FAILED(R.string.save_failed_title, R.string.save_failed_message),
     }
 
     enum class LoadType(@param:StringRes val contentRes: Int) {
@@ -79,10 +84,12 @@ class MainViewModelImpl(
     }
 
     private val customNumber = MutableStateFlow<String?>(null)
+    private val mutableMessages = MutableSharedFlow<Message>()
     private var selectedPhoneId: Int? = null
     private var pendingDebugLogExport: String? = null
 
     override val state = MutableStateFlow<State>(State.Loading(LoadType.LOADING))
+    override val messages = mutableMessages.asSharedFlow()
     override val number = combine(customNumber, state) { n, s ->
         when {
             n != null -> n
@@ -211,11 +218,17 @@ class MainViewModelImpl(
     }
 
     private fun save(number: String) = viewModelScope.launch {
+        val previousState = state.value as? State.Loaded ?: return@launch
         state.emit(State.Loading(LoadType.SAVING))
         val phoneId = selectedPhoneId ?: 0
         val writeResult = serviceRepository.runWithService {
             it.setLine1Number(phoneId, number)
         }
+        debugLogRepository.log(
+            "Main",
+            "SIM write call completed with result ${writeResult.resultCodeOrNull()}; " +
+                "verifying stored number regardless of reported result",
+        )
         delay(SAVE_VERIFICATION_DELAY_MILLIS)
         val refreshedSimResult = serviceRepository.runWithService { service ->
             val activePhoneIds = service.activePhoneIds.toList()
@@ -227,17 +240,17 @@ class MainViewModelImpl(
             }
             SimState(refreshedPhoneId, numbers)
         }
-        customNumber.emit(null)
-
         if (refreshedSimResult is ServiceRepository.Result.Success) {
             val refreshedSim = refreshedSimResult.value
             if (refreshedSim == null) {
+                customNumber.emit(null)
                 debugLogRepository.log("Main", "No active SIM remained after save")
                 state.emit(State.Error(ErrorType.NO_ACTIVE_SIM))
                 return@launch
             }
             selectedPhoneId = refreshedSim.phoneId
             if (refreshedSim.number == number) {
+                customNumber.emit(null)
                 debugLogRepository.log(
                     "Main",
                     "Save verified successfully from SIM after callback result ${writeResult.resultCodeOrNull()}",
@@ -253,37 +266,31 @@ class MainViewModelImpl(
                 return@launch
             }
             debugLogRepository.log("Main", "Save verification did not match the submitted number")
+            state.emit(
+                State.Loaded(
+                    refreshedSim.number,
+                    refreshedSim.phoneId,
+                    refreshedSim.activePhoneIds,
+                    refreshedSim.phoneNumbers,
+                ),
+            )
         } else {
             debugLogRepository.log("Main", "Unable to re-query SIM number after save")
+            state.emit(previousState)
         }
 
-        when (writeResult) {
-            ServiceRepository.Result.Unavailable -> {
-                debugLogRepository.log("Main", "Save stopped: Xposed service unavailable")
-                state.emit(State.Error(ErrorType.NO_XPOSED_SERVICE))
-            }
-            is ServiceRepository.Result.CallFailed -> {
-                debugLogRepository.log("Main", "Save stopped: Xposed binder call failed")
-                state.emit(State.Error(ErrorType.XPOSED_CALL_FAILED))
-            }
-            is ServiceRepository.Result.Success -> when (writeResult.value) {
-                PhoneNumberSetterService.SET_RESULT_AUTHENTICATION_REQUIRED -> {
-                    debugLogRepository.log(
-                        "Main",
-                        "SIM write requires PIN2, ADM, or another security credential",
-                    )
-                    state.emit(State.Error(ErrorType.SAVE_AUTHENTICATION_REQUIRED))
-                }
-                PhoneNumberSetterService.SET_RESULT_TIMEOUT -> {
-                    debugLogRepository.log("Main", "SIM write timed out")
-                    state.emit(State.Error(ErrorType.SAVE_TIMEOUT))
-                }
-                else -> {
-                    debugLogRepository.log("Main", "SIM rejected or did not retain the number update")
-                    state.emit(State.Error(ErrorType.SAVE_FAILED))
-                }
-            }
+        if (number == previousState.number) {
+            debugLogRepository.log(
+                "Main",
+                "Submitted number matched the original value; write result is inconclusive",
+            )
+            return@launch
         }
+        debugLogRepository.log(
+            "Main",
+            "SIM did not retain the number update; showing non-blocking possible-causes message",
+        )
+        mutableMessages.emit(Message.SAVE_FAILED)
     }
 
     private fun ServiceRepository.Result<Int>.resultCodeOrNull(): Int? {

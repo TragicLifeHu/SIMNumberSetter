@@ -21,6 +21,7 @@ import com.kieronquinn.app.simnumbersetter.ui.screens.main.MainViewModel.*
 import com.kieronquinn.app.simnumbersetter.utils.extensions.hideIme
 import com.kieronquinn.app.simnumbersetter.utils.extensions.onChanged
 import com.kieronquinn.app.simnumbersetter.utils.extensions.onClicked
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collect
@@ -78,6 +79,7 @@ class MainFragment: Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setupInsets()
         setupState()
+        setupMessages()
         setupToolbar()
         setupPhoneSelector()
         setupNumber()
@@ -207,6 +209,16 @@ class MainFragment: Fragment() {
         }
     }
 
+    private fun setupMessages() = launchAndRepeatWithViewLifecycle {
+        viewModel.messages.collect { message ->
+            MaterialAlertDialogBuilder(requireContext())
+                .setTitle(message.titleRes)
+                .setMessage(message.contentRes)
+                .setPositiveButton(android.R.string.ok, null)
+                .show()
+        }
+    }
+
     private fun setupWithLoading(loadType: LoadType) = with(binding.includeMainLoading) {
         mainLoading.setText(loadType.contentRes)
     }
@@ -216,12 +228,7 @@ class MainFragment: Fragment() {
     }
 
     private fun setupWithLoaded(state: State.Loaded) = with(binding.includeMainLoaded) {
-        val formattedNumber = state.number.ifEmpty {
-            getString(R.string.main_loaded_card_edit_number_empty)
-        }
         val editCard = includeMainLoadedCardEdit
-        editCard.mainLoadedCardEditCurrent.text =
-            getString(R.string.main_loaded_card_edit_content, formattedNumber)
         editCard.mainLoadedCardEditPhoneContainer.isVisible = state.activePhoneIds.size > 1
         val labels = state.activePhoneIds.map { phoneId ->
             val number = state.phoneNumbers[phoneId].orEmpty().ifEmpty {
