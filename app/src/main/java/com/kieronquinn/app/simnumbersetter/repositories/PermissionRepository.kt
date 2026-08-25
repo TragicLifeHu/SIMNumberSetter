@@ -19,7 +19,8 @@ interface PermissionRepository {
 
 class PermissionRepositoryImpl(
     private val context: Context,
-    private val rootRepository: RootRepository
+    private val shizukuRepository: ShizukuRepository,
+    private val debugLogRepository: DebugLogRepository,
 ): PermissionRepository {
 
     private fun hasDumpPermission(): Boolean {
@@ -27,16 +28,20 @@ class PermissionRepositoryImpl(
     }
 
     private suspend fun runGrantCommand() {
-        rootRepository.runRootCommand(
-            "pm grant ${BuildConfig.APPLICATION_ID} $PERMISSION_DUMP"
+        shizukuRepository.runCommand(
+            arrayOf("pm", "grant", BuildConfig.APPLICATION_ID, PERMISSION_DUMP),
         )
     }
 
     override suspend fun grantDumpPermission(): Boolean {
         return withContext(Dispatchers.IO) {
-            if(!hasDumpPermission()){
+            val alreadyGranted = hasDumpPermission()
+            debugLogRepository.log("Permission", "DUMP permission initially granted=$alreadyGranted")
+            if(!alreadyGranted){
                 runGrantCommand()
-                hasDumpPermission()
+                hasDumpPermission().also {
+                    debugLogRepository.log("Permission", "DUMP permission after grant=$it")
+                }
             }else true
         }
     }
