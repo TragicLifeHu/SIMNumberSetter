@@ -34,10 +34,18 @@
         tools:text="Error Content" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/main_error_close"
+        android:id="@+id/main_error_export_debug_log"
+        style="@style/Widget.Material3.Button.OutlinedButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_16"
+        android:text="@string/menu_export_debug_log" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/main_error_close"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_8"
         android:text="@string/main_error_close"/>
 
 </LinearLayout>

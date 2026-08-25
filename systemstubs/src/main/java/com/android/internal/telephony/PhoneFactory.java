@@ -6,4 +6,8 @@ public class PhoneFactory {
         throw new RuntimeException("Stub!");
     }
 
+    public static Phone[] getPhones() {
+        throw new RuntimeException("Stub!");
+    }
+
 }

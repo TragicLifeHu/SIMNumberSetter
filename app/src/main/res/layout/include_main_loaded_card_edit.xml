@@ -19,6 +19,49 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Large.SNS"
             android:textColor="?android:textColorPrimary" />
 
+        <LinearLayout
+            android:id="@+id/main_loaded_card_edit_phone_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_8"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/main_loaded_card_edit_sim"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small.SNS"
+                android:textColor="?android:textColorPrimary" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <Spinner
+                    android:id="@+id/main_loaded_card_edit_phone"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:minHeight="48dp"
+                    android:tooltipText="@string/main_loaded_card_edit_sim_clarification" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/main_loaded_card_edit_refresh"
+                    style="@style/Widget.Material3.Button.IconButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_8"
+                    android:contentDescription="@string/main_loaded_card_edit_refresh"
+                    app:icon="@drawable/ic_refresh_24"
+                    app:iconTint="?attr/colorOnSurfaceVariant" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
         <TextView
             android:id="@+id/main_loaded_card_edit_current"
             android:layout_width="match_parent"

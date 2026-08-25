@@ -6,18 +6,32 @@
     <string name="main_loaded_card_info_title">About</string>
     <string name="main_loaded_card_info_content">SIM Number Setter writes a given phone number to your SIM card\'s \"subscriber number\" memory. This is the number Android reads and uses in a few places throughout the system, including Settings and Messages. It is also provided to some third party apps, if they have sufficient permissions.\n\n<b>Changing the SIM number is semi-permanent: the number change will survive reboots, uninstalling this app, even switching the SIM to a different device, but can be changed again at any time using this app.</b>\n\nSIM Number Setter does NOT:\n- Change your actual phone number, no matter what you enter.\n- Unblock a network blocked SIM.\n- Give you free data or calls.\n- Change your IMEI.\n\n<b>SIM Number Setter uses the built-in Android methods to write data to the SIM. The app nor the developer are not responsible for issues with the process, including any damage to the SIM or network issues.</b></string>
     <string name="main_loaded_card_edit_title">Edit</string>
+    <string name="main_loaded_card_edit_sim">SIM</string>
+    <string name="main_loaded_card_edit_sim_value">SIM %1$d — %2$s</string>
+    <string name="main_loaded_card_edit_sim_clarification">Changes the number stored on the selected SIM. This does not change your default SIM for calls, messages, or mobile data.</string>
     <string name="main_loaded_card_edit_content">Current Number: %1s</string>
     <string name="main_loaded_card_edit_number_empty">Unknown</string>
     <string name="main_loaded_card_edit_input_hint">Enter Number</string>
     <string name="main_loaded_card_edit_input_save">Save</string>
+    <string name="main_loaded_card_edit_refresh">Refresh all SIMs</string>
 
     <string name="loading_loading">Loading…</string>
+    <string name="loading_refreshing">Refreshing…</string>
     <string name="loading_saving">Saving…</string>
 
-    <string name="error_no_root">Your device is not rooted, or root was denied. Root is required for this app to work.</string>
-    <string name="error_no_permission">Failed to grant permissions using root, please restart the app and try again.</string>
-    <string name="error_no_xposed">Failed to connect to the Xposed service or SIM not present, make sure the module is enabled and you have rebooted.</string>
+    <string name="error_no_shizuku">Shizuku is not available. Install and start Shizuku, then restart this app.</string>
+    <string name="error_no_shizuku_permission">Shizuku permission was denied. Allow access for this app and try again.</string>
+    <string name="error_no_permission">Failed to grant the required permission using Shizuku. Restart the app and try again.</string>
+    <string name="error_xposed_reboot_required">SIM Number Setter was installed or updated since the device last started. Reboot your phone so LSPosed can load this version of the module.</string>
+    <string name="error_no_xposed_service">Could not connect to the telephony service. Make sure the LSPosed module is enabled, its scope includes Phone Services, and the device has been rebooted.</string>
+    <string name="error_xposed_call_failed">Connected to the telephony service, but it did not provide the expected Xposed interface. Export the debug log for details.</string>
+    <string name="error_no_active_sim">No active SIM was found. Insert or enable a SIM and try again.</string>
     <string name="error_save_failed">Failed to save number, your device does not support this feature, sorry.</string>
+    <string name="error_save_authentication_required">The SIM rejected the write because this profile is security-protected. Android can report this condition, but does not provide an API for entering an operator ADM code. Ask the SIM issuer to unlock the profile or provide a writable replacement.</string>
+    <string name="error_save_timeout">The SIM did not finish the write in time. Restart the device and try again.</string>
     <string name="menu_github">GitHub</string>
     <string name="menu_donate">Donate</string>
+    <string name="menu_export_debug_log">Export debug log</string>
+    <string name="debug_log_saved">Debug log saved</string>
+    <string name="debug_log_save_failed">Failed to save debug log</string>
 </resources>

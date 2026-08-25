@@ -3,6 +3,7 @@ package com.kieronquinn.app.simnumbersetter.utils.extensions
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
+import androidx.core.content.IntentCompat
 import com.kieronquinn.app.simnumbersetter.BuildConfig
 
 private const val KEY_PENDING_INTENT = "SECURITY_PENDING_INTENT"
@@ -19,6 +20,10 @@ fun Intent.applySecurity(context: Context) {
 }
 
 fun Intent.checkSecurity(): Boolean {
-    val pendingIntent = getParcelableExtra<PendingIntent>(KEY_PENDING_INTENT) ?: return false
+    val pendingIntent = IntentCompat.getParcelableExtra(
+        this,
+        KEY_PENDING_INTENT,
+        PendingIntent::class.java
+    ) ?: return false
     return pendingIntent.creatorPackage == BuildConfig.APPLICATION_ID
 }

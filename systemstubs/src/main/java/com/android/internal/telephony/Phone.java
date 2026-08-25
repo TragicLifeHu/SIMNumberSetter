@@ -4,6 +4,14 @@ import android.os.Message;
 
 public class Phone implements PhoneInternalInterface {
 
+    public int getPhoneId() {
+        throw new RuntimeException("Stub!");
+    }
+
+    public int getSubId() {
+        throw new RuntimeException("Stub!");
+    }
+
     @Override
     public String getLine1AlphaTag() {
         throw new RuntimeException("Stub!");

@@ -5,4 +5,6 @@
         android:id="@+id/menu_github"/>
     <item android:title="@string/menu_donate"
         android:id="@+id/menu_donate"/>
+    <item android:title="@string/menu_export_debug_log"
+        android:id="@+id/menu_export_debug_log"/>
 </menu>

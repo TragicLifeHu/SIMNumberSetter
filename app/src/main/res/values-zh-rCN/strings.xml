@@ -5,18 +5,32 @@
     <string name="main_loaded_card_info_title">关于</string>
     <string name="main_loaded_card_info_content">SIM Number Setter 将号码写至 SIM 卡的\"用户号码\"寄存器区域.这是 Android 在整个系统读取和使用的号码,包括设置与信息.同时这也将提供给有足够权限的应用使用.\n\n<b>更改 SIM 号码是半永久的: 更改将在重启,卸载 app,甚至把 SIM 换到别的设备时存活,但可以在任何时间使用该app再次更改.</b>\n\nSIM Number Setter 并不会:\n- 更改你的实际手机号,无论你输入了什么.\n- 解锁一个被网络封锁的 SIM.\n- 给你免费的数据和通话.\n- 更改你的 IMEI.\n\n<b>SIM Number Setter 使用 Android 内置的方式向 SIM 写入数据.该 app 或开发人员均不对过程产生的问题负责,包括对 SIM 的损坏或网络问题.</b></string>
     <string name="main_loaded_card_edit_title">编辑</string>
+    <string name="main_loaded_card_edit_sim">SIM 卡</string>
+    <string name="main_loaded_card_edit_sim_value">SIM 卡 %1$d — %2$s</string>
+    <string name="main_loaded_card_edit_sim_clarification">更改所选 SIM 卡中存储的号码。此操作不会更改通话、短信或移动数据所使用的默认 SIM 卡。</string>
     <string name="main_loaded_card_edit_content">当前号码: %1s</string>
     <string name="main_loaded_card_edit_number_empty">未知</string>
     <string name="main_loaded_card_edit_input_hint">输入号码</string>
     <string name="main_loaded_card_edit_input_save">保存</string>
+    <string name="main_loaded_card_edit_refresh">刷新所有 SIM 卡</string>
 
     <string name="loading_loading">正在加载</string>
+    <string name="loading_refreshing">正在刷新</string>
     <string name="loading_saving">正在保存</string>
 
-    <string name="error_no_root">设备未 Root 或权限被拒绝,该app需要 Root 以工作</string>
-    <string name="error_no_permission">使用 Root 获取权限失败,请重启app重试</string>
-    <string name="error_no_xposed">无法连接到 Xposed 服务或 SIM 卡不存在,请确保模块已启用且已重启</string>
+    <string name="error_no_shizuku">Shizuku 不可用。请安装并启动 Shizuku，然后重新启动此应用</string>
+    <string name="error_no_shizuku_permission">Shizuku 权限被拒绝。请允许此应用访问，然后重试</string>
+    <string name="error_no_permission">使用 Shizuku 获取所需权限失败，请重启应用后重试</string>
+    <string name="error_xposed_reboot_required">设备启动后安装或更新了 SIM Number Setter。请重启手机，以便 LSPosed 加载此版本的模块。</string>
+    <string name="error_no_xposed_service">无法连接到电话服务。请确保 LSPosed 模块已启用、作用域包含电话服务，并且设备已重新启动。</string>
+    <string name="error_xposed_call_failed">已连接到电话服务，但它未提供预期的 Xposed 接口。请导出调试日志以获取详细信息。</string>
+    <string name="error_no_active_sim">未找到已启用的 SIM 卡。请插入或启用 SIM 卡后重试。</string>
     <string name="error_save_failed">保存号码失败,你的设备可能不支持该功能</string>
+    <string name="error_save_authentication_required">SIM 卡拒绝写入，因为此配置文件受安全保护。Android 可以报告此情况，但不提供输入运营商 ADM 码的 API。请联系 SIM 卡发行方解锁配置文件或提供可写的替换卡。</string>
+    <string name="error_save_timeout">SIM 卡未能及时完成写入。请重新启动设备后重试。</string>
     <string name="menu_github">Github</string>
     <string name="menu_donate">打赏</string>
+    <string name="menu_export_debug_log">导出调试日志</string>
+    <string name="debug_log_saved">调试日志已保存</string>
+    <string name="debug_log_save_failed">保存调试日志失败</string>
 </resources>
