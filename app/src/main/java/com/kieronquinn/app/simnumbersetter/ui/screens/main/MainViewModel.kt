@@ -45,9 +45,7 @@ abstract class MainViewModel : ViewModel() {
     }
 
     enum class ErrorType(@param:StringRes val messageRes: Int) {
-        NO_SHIZUKU(R.string.error_no_shizuku),
-        NO_SHIZUKU_PERMISSION(R.string.error_no_shizuku_permission),
-        NO_PERMISSION(R.string.error_no_permission),
+        NO_PERMISSION(R.string.error_no_dump_permission),
         XPOSED_REBOOT_REQUIRED(R.string.error_xposed_reboot_required),
         NO_XPOSED_SERVICE(R.string.error_no_xposed_service),
         XPOSED_CALL_FAILED(R.string.error_xposed_call_failed),
@@ -166,17 +164,7 @@ class MainViewModelImpl(
             state.emit(State.Error(ErrorType.XPOSED_REBOOT_REQUIRED))
             return@launch
         }
-        if (!shizukuRepository.isAvailable()) {
-            debugLogRepository.log("Main", "Load stopped: Shizuku unavailable")
-            state.emit(State.Error(ErrorType.NO_SHIZUKU))
-            return@launch
-        }
-        if (!shizukuRepository.requestPermission()) {
-            debugLogRepository.log("Main", "Load stopped: Shizuku permission unavailable")
-            state.emit(State.Error(ErrorType.NO_SHIZUKU_PERMISSION))
-            return@launch
-        }
-        if (!permissionRepository.grantDumpPermission()) {
+        if (!ensureDumpPermission()) {
             debugLogRepository.log("Main", "Load stopped: DUMP permission unavailable")
             state.emit(State.Error(ErrorType.NO_PERMISSION))
             return@launch
@@ -215,6 +203,26 @@ class MainViewModelImpl(
         state.emit(
             State.Loaded(sim.number, sim.phoneId, sim.activePhoneIds, sim.phoneNumbers),
         )
+    }
+
+    private suspend fun ensureDumpPermission(): Boolean {
+        if (permissionRepository.hasDumpPermission()) {
+            debugLogRepository.log(
+                "Main",
+                "DUMP permission already granted; Shizuku is not required",
+            )
+            return true
+        }
+        debugLogRepository.log("Main", "DUMP permission missing; attempting Shizuku grant")
+        if (!shizukuRepository.isAvailable()) {
+            debugLogRepository.log("Main", "Cannot grant DUMP permission: Shizuku unavailable")
+            return false
+        }
+        if (!shizukuRepository.requestPermission()) {
+            debugLogRepository.log("Main", "Cannot grant DUMP permission: Shizuku access denied")
+            return false
+        }
+        return permissionRepository.grantDumpPermission()
     }
 
     private fun save(number: String) = viewModelScope.launch {

@@ -21,6 +21,7 @@
     <string name="error_no_shizuku">Shizuku is not available. Install and start Shizuku, then restart this app.</string>
     <string name="error_no_shizuku_permission">Shizuku permission was denied. Allow access for this app and try again.</string>
     <string name="error_no_permission">Failed to grant the required permission using Shizuku. Restart the app and try again.</string>
+    <string name="error_no_dump_permission" translatable="false">The DUMP permission is not granted. Start Shizuku and reopen the app so it can grant the permission, or connect the device to a computer and run:\n\nadb shell pm grant com.kieronquinn.app.simnumbersetter android.permission.DUMP\n\nThen reopen the app. Shizuku is not needed after the permission is granted.</string>
     <string name="error_xposed_reboot_required">SIM Number Setter was installed or updated since the device last started. Reboot your phone so LSPosed can load this version of the module.</string>
     <string name="error_no_xposed_service">Could not connect to the telephony service. Make sure the LSPosed module is enabled, its scope includes Phone Services, and the device has been rebooted.</string>
     <string name="error_xposed_call_failed">Connected to the telephony service, but it did not provide the expected Xposed interface. Export the debug log for details.</string>

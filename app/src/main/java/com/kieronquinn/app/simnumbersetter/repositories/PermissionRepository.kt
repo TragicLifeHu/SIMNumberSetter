@@ -13,6 +13,8 @@ interface PermissionRepository {
         internal const val PERMISSION_DUMP = "android.permission.DUMP"
     }
 
+    fun hasDumpPermission(): Boolean
+
     suspend fun grantDumpPermission(): Boolean
 
 }
@@ -23,7 +25,7 @@ class PermissionRepositoryImpl(
     private val debugLogRepository: DebugLogRepository,
 ): PermissionRepository {
 
-    private fun hasDumpPermission(): Boolean {
+    override fun hasDumpPermission(): Boolean {
         return context.checkCallingOrSelfPermission(PERMISSION_DUMP) == PackageManager.PERMISSION_GRANTED
     }
 
@@ -37,12 +39,12 @@ class PermissionRepositoryImpl(
         return withContext(Dispatchers.IO) {
             val alreadyGranted = hasDumpPermission()
             debugLogRepository.log("Permission", "DUMP permission initially granted=$alreadyGranted")
-            if(!alreadyGranted){
+            if (!alreadyGranted) {
                 runGrantCommand()
                 hasDumpPermission().also {
                     debugLogRepository.log("Permission", "DUMP permission after grant=$it")
                 }
-            }else true
+            } else true
         }
     }
 
